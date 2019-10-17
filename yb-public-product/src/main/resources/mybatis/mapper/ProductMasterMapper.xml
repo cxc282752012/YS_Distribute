@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.product.mapper.ProductMasterMapper" >
+  <resultMap id="result" type="com.product.entity.ProductMasterEntity" >
+    <id column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_spu" property="productSpu" jdbcType="VARCHAR" />
+    <result column="product_shot_name" property="productShotName" jdbcType="VARCHAR" />
+    <result column="product_search_key" property="productSearchKey" jdbcType="VARCHAR" />
+    <result column="custom_code" property="customCode" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="brands_id" property="brandsId" jdbcType="INTEGER" />
+    <result column="unit_id" property="unitId" jdbcType="INTEGER" />
+    <result column="product_barcode" property="productBarcode" jdbcType="VARCHAR" />
+    <result column="purchase_price" property="purchasePrice" jdbcType="DOUBLE" />
+    <result column="retail_price" property="retailPrice" jdbcType="DOUBLE" />
+    <result column="lowest_price" property="lowestPrice" jdbcType="DOUBLE" />
+    <result column="member_price" property="memberPrice" jdbcType="DOUBLE" />
+    <result column="wholesale_price" property="wholesalePrice" jdbcType="DOUBLE" />
+    <result column="website_price" property="websitePrice" jdbcType="DOUBLE" />
+    <result column="transfer_price" property="transferPrice" jdbcType="DOUBLE" />
+    <result column="supplie_id" property="supplieId" jdbcType="INTEGER" />
+    <result column="is_member" property="isMember" jdbcType="CHAR" />
+    <result column="is_promotion" property="isPromotion" jdbcType="CHAR" />
+    <result column="is_integral" property="isIntegral" jdbcType="CHAR" />
+    <result column="is_redeem" property="isRedeem" jdbcType="CHAR" />
+    <result column="is_bargain" property="isBargain" jdbcType="CHAR" />
+    <result column="is_discount" property="isDiscount" jdbcType="CHAR" />
+    <result column="is_gift" property="isGift" jdbcType="CHAR" />
+    <result column="product_status" property="productStatus" jdbcType="INTEGER" />
+    <result column="season_name" property="seasonName" jdbcType="VARCHAR" />
+    <result column="production_time" property="productionTime" jdbcType="TIMESTAMP" />
+    <result column="product_remark" property="productRemark" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <delete id="doDelete" parameterType="java.lang.Integer" >
+    delete from product_master
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="doInsert" parameterType="com.product.entity.ProductMasterEntity" >
+    insert into product_master (product_id, product_name, product_spu, 
+      product_shot_name, product_search_key, custom_code, 
+      category_id, brands_id, unit_id, 
+      product_barcode, purchase_price, retail_price, 
+      lowest_price, member_price, wholesale_price, 
+      website_price, transfer_price, supplie_id, 
+      is_member, is_promotion, is_integral, 
+      is_redeem, is_bargain, is_discount, 
+      is_gift, product_status, season_name, 
+      production_time, product_remark, store_id, 
+      create_time, update_time)
+    values (#{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productSpu,jdbcType=VARCHAR}, 
+      #{productShotName,jdbcType=VARCHAR}, #{productSearchKey,jdbcType=VARCHAR}, #{customCode,jdbcType=VARCHAR}, 
+      #{categoryId,jdbcType=INTEGER}, #{brandsId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, 
+      #{productBarcode,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=DOUBLE}, #{retailPrice,jdbcType=DOUBLE}, 
+      #{lowestPrice,jdbcType=DOUBLE}, #{memberPrice,jdbcType=DOUBLE}, #{wholesalePrice,jdbcType=DOUBLE}, 
+      #{websitePrice,jdbcType=DOUBLE}, #{transferPrice,jdbcType=DOUBLE}, #{supplieId,jdbcType=INTEGER}, 
+      #{isMember,jdbcType=CHAR}, #{isPromotion,jdbcType=CHAR}, #{isIntegral,jdbcType=CHAR}, 
+      #{isRedeem,jdbcType=CHAR}, #{isBargain,jdbcType=CHAR}, #{isDiscount,jdbcType=CHAR}, 
+      #{isGift,jdbcType=CHAR}, #{productStatus,jdbcType=INTEGER}, #{seasonName,jdbcType=VARCHAR}, 
+      #{productionTime,jdbcType=TIMESTAMP}, #{productRemark,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="doUpdate" parameterType="com.product.entity.ProductMasterEntity" >
+    update product_master
+    <set >
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpu != null" >
+        product_spu = #{productSpu,jdbcType=VARCHAR},
+      </if>
+      <if test="productShotName != null" >
+        product_shot_name = #{productShotName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSearchKey != null" >
+        product_search_key = #{productSearchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="customCode != null" >
+        custom_code = #{customCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandsId != null" >
+        brands_id = #{brandsId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null" >
+        unit_id = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="productBarcode != null" >
+        product_barcode = #{productBarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price = #{purchasePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="retailPrice != null" >
+        retail_price = #{retailPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="lowestPrice != null" >
+        lowest_price = #{lowestPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="memberPrice != null" >
+        member_price = #{memberPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="wholesalePrice != null" >
+        wholesale_price = #{wholesalePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="websitePrice != null" >
+        website_price = #{websitePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="transferPrice != null" >
+        transfer_price = #{transferPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="supplieId != null" >
+        supplie_id = #{supplieId,jdbcType=INTEGER},
+      </if>
+      <if test="isMember != null" >
+        is_member = #{isMember,jdbcType=CHAR},
+      </if>
+      <if test="isPromotion != null" >
+        is_promotion = #{isPromotion,jdbcType=CHAR},
+      </if>
+      <if test="isIntegral != null" >
+        is_integral = #{isIntegral,jdbcType=CHAR},
+      </if>
+      <if test="isRedeem != null" >
+        is_redeem = #{isRedeem,jdbcType=CHAR},
+      </if>
+      <if test="isBargain != null" >
+        is_bargain = #{isBargain,jdbcType=CHAR},
+      </if>
+      <if test="isDiscount != null" >
+        is_discount = #{isDiscount,jdbcType=CHAR},
+      </if>
+      <if test="isGift != null" >
+        is_gift = #{isGift,jdbcType=CHAR},
+      </if>
+      <if test="productStatus != null" >
+        product_status = #{productStatus,jdbcType=INTEGER},
+      </if>
+      <if test="seasonName != null" >
+        season_name = #{seasonName,jdbcType=VARCHAR},
+      </if>
+      <if test="productionTime != null" >
+        production_time = #{productionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productRemark != null" >
+        product_remark = #{productRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findList" resultMap="result">
+    SELECT * FROM `product_master`
+    <where>
+      <if test="productId!=null"> and `product_id` = #{productId}</if>
+      <if test="storeId!=null"> and `store_id` = #{storeId}</if>
+      <if test="customCode!=null"> and `custom_code` = #{customCode}</if>
+    </where>
+  </select>
+
+  <select id="findInfo" resultMap="result">
+    SELECT * FROM `product_master`
+    <where>
+      <if test="productId!=null"> and `product_id` = #{productId}</if>
+    </where>
+  </select>
+</mapper>

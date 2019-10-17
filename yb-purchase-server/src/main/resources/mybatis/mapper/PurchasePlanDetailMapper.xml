@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.purchase.mapper.PurchasePlanDetailMapper">
+    <resultMap id="result" type="com.purchase.entity.PurchasePlanDetailEntity">
+        <id column="purchase_plan_detail_id" property="purchasePlanDetailId" jdbcType="INTEGER"/>
+        <result column="purchase_plan_id" property="purchasePlanId" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="custom_code" property="customCode" jdbcType="VARCHAR"/>
+        <result column="product_detail_id" property="productDetailId" jdbcType="INTEGER"/>
+        <result column="product_sku" property="productSku" jdbcType="VARCHAR"/>
+        <result column="color_name" property="colorName" jdbcType="VARCHAR"/>
+        <result column="size_name" property="sizeName" jdbcType="VARCHAR"/>
+        <result column="product_discount" property="productDiscount" jdbcType="DOUBLE"/>
+        <result column="product_barcode" property="productBarcode" jdbcType="VARCHAR"/>
+        <result column="product_quantity" property="productQuantity" jdbcType="INTEGER"/>
+        <result column="plan_package_quantity" property="planPackageQuantity" jdbcType="INTEGER"/>
+        <result column="product_price" property="productPrice" jdbcType="DOUBLE"/>
+        <result column="product_total_price" property="productTotalPrice" jdbcType="DOUBLE"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="plan_detail_remark" property="planDetailRemark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="findList" resultMap="result" parameterType="java.lang.Integer">
+        select * from purchase_plan_detail
+        <where>
+            <if test="purchasePlanDetailId!=null">and purchase_plan_detail_id = #{purchasePlanDetailId,jdbcType=INTEGER}</if>
+        </where>
+    </select>
+    <select id="findInfo" resultMap="result" parameterType="java.lang.Integer">
+        select * from purchase_plan_detail
+        <where>
+            <if test="purchasePlanDetailId!=null">and purchase_plan_detail_id = #{purchasePlanDetailId,jdbcType=INTEGER}</if>
+        </where>
+    </select>
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from purchase_plan_detail
+        where purchase_plan_detail_id = #{purchasePlanDetailId,jdbcType=INTEGER}
+    </delete>
+    <insert id="doInsert" parameterType="com.purchase.entity.PurchasePlanDetailEntity">
+        insert into purchase_plan_detail (purchase_plan_detail_id, purchase_plan_id,
+        product_id, product_name, custom_code,
+        product_detail_id, product_sku, color_name,
+        size_name, product_discount, product_barcode,
+        product_quantity, plan_package_quantity, product_price,
+        product_total_price, store_id, plan_detail_remark,
+        create_time, update_time)
+        values (#{purchasePlanDetailId,jdbcType=INTEGER}, #{purchasePlanId,jdbcType=INTEGER},
+        #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{customCode,jdbcType=VARCHAR},
+        #{productDetailId,jdbcType=INTEGER}, #{productSku,jdbcType=VARCHAR}, #{colorName,jdbcType=VARCHAR},
+        #{sizeName,jdbcType=VARCHAR}, #{productDiscount,jdbcType=DOUBLE}, #{productBarcode,jdbcType=VARCHAR},
+        #{productQuantity,jdbcType=INTEGER}, #{planPackageQuantity,jdbcType=INTEGER}, #{productPrice,jdbcType=DOUBLE},
+        #{productTotalPrice,jdbcType=DOUBLE}, #{storeId,jdbcType=INTEGER}, #{planDetailRemark,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="doUpdate" parameterType="com.purchase.entity.PurchasePlanDetailEntity">
+        update purchase_plan_detail
+        <set>
+            <if test="purchasePlanId != null">
+                purchase_plan_id = #{purchasePlanId,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="customCode != null">
+                custom_code = #{customCode,jdbcType=VARCHAR},
+            </if>
+            <if test="productDetailId != null">
+                product_detail_id = #{productDetailId,jdbcType=INTEGER},
+            </if>
+            <if test="productSku != null">
+                product_sku = #{productSku,jdbcType=VARCHAR},
+            </if>
+            <if test="colorName != null">
+                color_name = #{colorName,jdbcType=VARCHAR},
+            </if>
+            <if test="sizeName != null">
+                size_name = #{sizeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productDiscount != null">
+                product_discount = #{productDiscount,jdbcType=DOUBLE},
+            </if>
+            <if test="productBarcode != null">
+                product_barcode = #{productBarcode,jdbcType=VARCHAR},
+            </if>
+            <if test="productQuantity != null">
+                product_quantity = #{productQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="planPackageQuantity != null">
+                plan_package_quantity = #{planPackageQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="productTotalPrice != null">
+                product_total_price = #{productTotalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="planDetailRemark != null">
+                plan_detail_remark = #{planDetailRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where purchase_plan_detail_id = #{purchasePlanDetailId,jdbcType=INTEGER}
+    </update>
+</mapper>

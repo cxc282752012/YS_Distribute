@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.purchase.mapper.PurchaseOrderDetailMapper">
+    <resultMap id="result" type="com.purchase.entity.PurchaseOrderDetailEntity">
+        <id column="purchase_detail_id" property="purchaseDetailId" jdbcType="INTEGER"/>
+        <result column="purchase_id" property="purchaseId" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="product_spu" property="productSpu" jdbcType="VARCHAR"/>
+        <result column="custom_code" property="customCode" jdbcType="VARCHAR"/>
+        <result column="product_detail_id" property="productDetailId" jdbcType="INTEGER"/>
+        <result column="product_sku" property="productSku" jdbcType="VARCHAR"/>
+        <result column="color_name" property="colorName" jdbcType="VARCHAR"/>
+        <result column="size_name" property="sizeName" jdbcType="VARCHAR"/>
+        <result column="product_barcode" property="productBarcode" jdbcType="VARCHAR"/>
+        <result column="product_quantity" property="productQuantity" jdbcType="INTEGER"/>
+        <result column="purchase_package_quantity" property="purchasePackageQuantity" jdbcType="INTEGER"/>
+        <result column="product_price" property="productPrice" jdbcType="DOUBLE"/>
+        <result column="product_total_price" property="productTotalPrice" jdbcType="DOUBLE"/>
+        <result column="product_discount" property="productDiscount" jdbcType="DOUBLE"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="purchase_detail_remark" property="purchaseDetailRemark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findList" resultMap="result" parameterType="java.lang.Integer">
+        select * from purchase_order_detail
+        <where>
+            <if test="purchaseDetailId!=null">and purchase_detail_id = #{purchaseDetailId,jdbcType=INTEGER}</if>
+        </where>
+    </select>
+    <select id="findInfo" resultMap="result" parameterType="java.lang.Integer">
+        select * from purchase_order_detail
+        <where>
+            <if test="purchaseDetailId!=null">and purchase_detail_id = #{purchaseDetailId,jdbcType=INTEGER}</if>
+        </where>
+    </select>
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from purchase_order_detail
+        where purchase_detail_id = #{purchaseDetailId,jdbcType=INTEGER}
+    </delete>
+    <insert id="doInsert" parameterType="com.purchase.entity.PurchaseOrderDetailEntity">
+        insert into purchase_order_detail (purchase_detail_id, purchase_id, product_id,
+        product_name, product_spu, custom_code,
+        product_detail_id, product_sku, color_name,
+        size_name, product_barcode, product_quantity,
+        purchase_package_quantity, product_price, product_total_price,
+        product_discount, store_id, purchase_detail_remark,
+        create_time, update_time)
+        values (#{purchaseDetailId,jdbcType=INTEGER}, #{purchaseId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER},
+        #{productName,jdbcType=VARCHAR}, #{productSpu,jdbcType=VARCHAR}, #{customCode,jdbcType=VARCHAR},
+        #{productDetailId,jdbcType=INTEGER}, #{productSku,jdbcType=VARCHAR}, #{colorName,jdbcType=VARCHAR},
+        #{sizeName,jdbcType=VARCHAR}, #{productBarcode,jdbcType=VARCHAR}, #{productQuantity,jdbcType=INTEGER},
+        #{purchasePackageQuantity,jdbcType=INTEGER}, #{productPrice,jdbcType=DOUBLE},
+        #{productTotalPrice,jdbcType=DOUBLE},
+        #{productDiscount,jdbcType=DOUBLE}, #{storeId,jdbcType=INTEGER}, #{purchaseDetailRemark,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="doUpdate" parameterType="com.purchase.entity.PurchaseOrderDetailEntity">
+        update purchase_order_detail
+        <set>
+            <if test="purchaseId != null">
+                purchase_id = #{purchaseId,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productSpu != null">
+                product_spu = #{productSpu,jdbcType=VARCHAR},
+            </if>
+            <if test="customCode != null">
+                custom_code = #{customCode,jdbcType=VARCHAR},
+            </if>
+            <if test="productDetailId != null">
+                product_detail_id = #{productDetailId,jdbcType=INTEGER},
+            </if>
+            <if test="productSku != null">
+                product_sku = #{productSku,jdbcType=VARCHAR},
+            </if>
+            <if test="colorName != null">
+                color_name = #{colorName,jdbcType=VARCHAR},
+            </if>
+            <if test="sizeName != null">
+                size_name = #{sizeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productBarcode != null">
+                product_barcode = #{productBarcode,jdbcType=VARCHAR},
+            </if>
+            <if test="productQuantity != null">
+                product_quantity = #{productQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="purchasePackageQuantity != null">
+                purchase_package_quantity = #{purchasePackageQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="productTotalPrice != null">
+                product_total_price = #{productTotalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="productDiscount != null">
+                product_discount = #{productDiscount,jdbcType=DOUBLE},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="purchaseDetailRemark != null">
+                purchase_detail_remark = #{purchaseDetailRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where purchase_detail_id = #{purchaseDetailId,jdbcType=INTEGER}
+    </update>
+</mapper>

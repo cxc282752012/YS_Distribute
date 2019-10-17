@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sales.mapper.SalesPlanMasterMapper">
+    <resultMap id="result" type="com.sales.entity.SalesPlanMasterEntity">
+        <id column="sales_plan_id" property="salesPlanId" jdbcType="INTEGER" />
+        <result column="sales_plan_code" property="salesPlanCode" jdbcType="VARCHAR" />
+        <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+        <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+        <result column="store_id" property="storeId" jdbcType="INTEGER" />
+        <result column="sales_plan_status" property="salesPlanStatus" jdbcType="INTEGER" />
+        <result column="payment_style_name" property="paymentStyleName" jdbcType="VARCHAR" />
+        <result column="payment_price" property="paymentPrice" jdbcType="DOUBLE" />
+        <result column="sales_plan_quantity" property="salesPlanQuantity" jdbcType="INTEGER" />
+        <result column="package_quantity" property="packageQuantity" jdbcType="INTEGER" />
+        <result column="sales_plan_total_price" property="salesPlanTotalPrice" jdbcType="DOUBLE" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="sales_man_id" property="salesManId" jdbcType="INTEGER" />
+        <result column="sales_plan_remake" property="salesPlanRemake" jdbcType="VARCHAR" />
+        <result column="occurrence_time" property="occurrenceTime" jdbcType="TIMESTAMP" />
+        <result column="print_count" property="printCount" jdbcType="INTEGER" />
+        <result column="sales_plan_type" property="salesPlanType" jdbcType="INTEGER" />
+        <result column="sales_plan_style" property="salesPlanStyle" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from sales_plan_master
+        where sales_plan_id = #{salesPlanId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="doInsert" parameterType="com.sales.entity.SalesPlanMasterEntity">
+        insert into sales_plan_master (sales_plan_id, sales_plan_code, customer_id,
+          customer_name, store_id, sales_plan_status,
+          payment_style_name, payment_price, sales_plan_quantity,
+          package_quantity, sales_plan_total_price, user_id,
+          sales_man_id, sales_plan_remake, occurrence_time,
+          print_count, sales_plan_type, sales_plan_style,
+          create_time, update_time)
+        values (#{salesPlanId,jdbcType=INTEGER}, #{salesPlanCode,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER},
+          #{customerName,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER}, #{salesPlanStatus,jdbcType=INTEGER},
+          #{paymentStyleName,jdbcType=VARCHAR}, #{paymentPrice,jdbcType=DOUBLE}, #{salesPlanQuantity,jdbcType=INTEGER},
+          #{packageQuantity,jdbcType=INTEGER}, #{salesPlanTotalPrice,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER},
+          #{salesManId,jdbcType=INTEGER}, #{salesPlanRemake,jdbcType=VARCHAR}, #{occurrenceTime,jdbcType=TIMESTAMP},
+          #{printCount,jdbcType=INTEGER}, #{salesPlanType,jdbcType=INTEGER}, #{salesPlanStyle,jdbcType=INTEGER},
+          #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="doUpdate" parameterType="com.sales.entity.SalesPlanMasterEntity">
+        update sales_plan_master
+        <set>
+            <if test="salesPlanCode != null">
+                sales_plan_code = #{salesPlanCode,jdbcType=VARCHAR},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="customerName != null">
+                customer_name = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="stoerId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="salesPlanStatus != null">
+                sales_plan_status = #{salesPlanStatus,jdbcType=INTEGER},
+            </if>
+            <if test="paymentStyleName != null">
+                payment_style_name = #{paymentStyleName,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentPrice != null">
+                payment_price = #{paymentPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="salesPlanQuantity != null">
+                sales_plan_quantity = #{salesPlanQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="packageQuantity != null">
+                package_quantity = #{packageQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="salesPlanTotalPrice != null">
+                sales_plan_total_price = #{salesPlanTotalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="salesManId != null">
+                sales_man_id = #{salesManId,jdbcType=INTEGER},
+            </if>
+            <if test="salesPlanRemake != null">
+                sales_plan_remake = #{salesPlanRemake,jdbcType=VARCHAR},
+            </if>
+            <if test="occurrenceTime != null">
+                occurrence_time = #{occurrenceTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="printCount != null">
+                print_count = #{printCount,jdbcType=INTEGER},
+            </if>
+            <if test="salesPlanType != null">
+                sales_plan_type = #{salesPlanType,jdbcType=INTEGER},
+            </if>
+            <if test="salesPlanStyle != null">
+                sales_plan_style = #{salesPlanStyle,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where sales_plan_id = #{salesPlanId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findList" resultMap="result">
+        SELECT * FROM `sales_plan_master`
+        <where>
+            <if test="salesPlanId!=null">and `sales_plan_id` = #{salesPlanId}</if>
+        </where>
+    </select>
+
+    <select id="findInfo" resultMap="result">
+        SELECT * FROM `sales_plan_master`
+        <where>
+            <if test="salesPlanId!=null">and `sales_plan_id` = #{salesPlanId}</if>
+        </where>
+    </select>
+</mapper>

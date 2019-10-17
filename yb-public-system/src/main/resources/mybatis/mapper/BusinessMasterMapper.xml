@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.system.mapper.BusinessMasterMapper">
+    <resultMap id="result" type="com.system.entity.BusinessMasterEntity">
+        <id column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="business_code" property="businessCode" jdbcType="VARCHAR"/>
+        <result column="business_name" property="businessName" jdbcType="VARCHAR"/>
+        <result column="business_address" property="businessAddress" jdbcType="VARCHAR"/>
+        <result column="business_phone" property="businessPhone" jdbcType="VARCHAR"/>
+        <result column="business_mail" property="businessMail" jdbcType="VARCHAR"/>
+        <result column="business_linkman" property="businessLinkman" jdbcType="VARCHAR"/>
+        <result column="business_password" property="businessPassword" jdbcType="VARCHAR"/>
+        <result column="business_website_url" property="businessWebsiteUrl" jdbcType="VARCHAR"/>
+        <result column="business_image_url" property="businessImageUrl" jdbcType="VARCHAR"/>
+        <result column="business_status" property="businessStatus" jdbcType="INTEGER"/>
+        <result column="business_remark" property="businessRemark" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findList" resultMap="result" parameterType="java.lang.Integer">
+        select * from business_master
+        <where>
+            <if test="businessId!=null">and business_id = #{businessId,jdbcType=INTEGER}</if>
+        </where>
+    </select>
+    <select id="findInfo" resultMap="result" parameterType="java.lang.Integer">
+        select * from business_master
+        <where>
+            <if test="businessId!=null">and business_id = #{businessId,jdbcType=INTEGER}</if>
+        </where>
+    </select>
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from business_master
+        where business_id = #{businessId,jdbcType=INTEGER}
+    </delete>
+    <insert id="doInsert" parameterType="com.system.entity.BusinessMasterEntity">
+        insert into business_master (business_id, business_code, business_name,
+        business_address, business_phone, business_mail,
+        business_linkman, business_password, business_website_url,
+        business_image_url, business_status, business_remark,
+        create_time, update_time)
+        values (#{businessId,jdbcType=INTEGER}, #{businessCode,jdbcType=VARCHAR}, #{businessName,jdbcType=VARCHAR},
+        #{businessAddress,jdbcType=VARCHAR}, #{businessPhone,jdbcType=VARCHAR}, #{businessMail,jdbcType=VARCHAR},
+        #{businessLinkman,jdbcType=VARCHAR}, #{businessPassword,jdbcType=VARCHAR},
+        #{businessWebsiteUrl,jdbcType=VARCHAR},
+        #{businessImageUrl,jdbcType=VARCHAR}, #{businessStatus,jdbcType=INTEGER}, #{businessRemark,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="doUpdate" parameterType="com.system.entity.BusinessMasterEntity">
+        update business_master
+        <set>
+            <if test="businessCode != null">
+                business_code = #{businessCode,jdbcType=VARCHAR},
+            </if>
+            <if test="businessName != null">
+                business_name = #{businessName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessAddress != null">
+                business_address = #{businessAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="businessPhone != null">
+                business_phone = #{businessPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="businessMail != null">
+                business_mail = #{businessMail,jdbcType=VARCHAR},
+            </if>
+            <if test="businessLinkman != null">
+                business_linkman = #{businessLinkman,jdbcType=VARCHAR},
+            </if>
+            <if test="businessPassword != null">
+                business_password = #{businessPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="businessWebsiteUrl != null">
+                business_website_url = #{businessWebsiteUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="businessImageUrl != null">
+                business_image_url = #{businessImageUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="businessStatus != null">
+                business_status = #{businessStatus,jdbcType=INTEGER},
+            </if>
+            <if test="businessRemark != null">
+                business_remark = #{businessRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where business_id = #{businessId,jdbcType=INTEGER}
+    </update>
+</mapper>

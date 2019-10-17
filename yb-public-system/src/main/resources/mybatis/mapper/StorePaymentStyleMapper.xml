@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.system.mapper.StorePaymentStyleMapper" >
+  <resultMap id="result" type="com.system.entity.StorePaymentStyleEntity" >
+    <id column="payment_style_id" property="paymentStyleId" jdbcType="INTEGER" />
+    <result column="payment_style_name" property="paymentStyleName" jdbcType="VARCHAR" />
+    <result column="payment_style_code" property="paymentStyleCode" jdbcType="VARCHAR" />
+    <result column="payment_short_name" property="paymentShortName" jdbcType="VARCHAR" />
+    <result column="payment_account_name" property="paymentAccountName" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="is_system" property="isSystem" jdbcType="CHAR" />
+    <result column="is_default" property="isDefault" jdbcType="CHAR" />
+    <result column="is_first_use" property="isFirstUse" jdbcType="CHAR" />
+    <result column="is_flag" property="isFlag" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="balance" property="balance" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <select id="findList" resultMap="result" parameterType="java.lang.Integer" >
+    select *
+    from store_payment_style
+    <where>
+      <if test="paymentStyleId!=null">and payment_style_id = #{paymentStyleId,jdbcType=INTEGER}</if>
+    </where>
+  </select>
+  <select id="findInfo" resultMap="result" parameterType="java.lang.Integer" >
+    select *
+    from store_payment_style
+    <where>
+      <if test="paymentStyleId!=null">and payment_style_id = #{paymentStyleId,jdbcType=INTEGER}</if>
+    </where>
+  </select>
+  <delete id="doDelete" parameterType="java.lang.Integer" >
+    delete from store_payment_style
+    where payment_style_id = #{paymentStyleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="doInsert" parameterType="com.system.entity.StorePaymentStyleEntity" >
+    insert into store_payment_style (payment_style_id, payment_style_name, 
+      payment_style_code, payment_short_name, payment_account_name, 
+      store_id, is_system, is_default, 
+      is_first_use, is_flag, create_time, 
+      update_time, balance)
+    values (#{paymentStyleId,jdbcType=INTEGER}, #{paymentStyleName,jdbcType=VARCHAR}, 
+      #{paymentStyleCode,jdbcType=VARCHAR}, #{paymentShortName,jdbcType=VARCHAR}, #{paymentAccountName,jdbcType=VARCHAR}, 
+      #{storeId,jdbcType=INTEGER}, #{isSystem,jdbcType=CHAR}, #{isDefault,jdbcType=CHAR}, 
+      #{isFirstUse,jdbcType=CHAR}, #{isFlag,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{balance,jdbcType=DOUBLE})
+  </insert>
+  <update id="doUpdate" parameterType="com.system.entity.StorePaymentStyleEntity" >
+    update store_payment_style
+    <set >
+      <if test="paymentStyleName != null" >
+        payment_style_name = #{paymentStyleName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentStyleCode != null" >
+        payment_style_code = #{paymentStyleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentShortName != null" >
+        payment_short_name = #{paymentShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAccountName != null" >
+        payment_account_name = #{paymentAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="isSystem != null" >
+        is_system = #{isSystem,jdbcType=CHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="isFirstUse != null" >
+        is_first_use = #{isFirstUse,jdbcType=CHAR},
+      </if>
+      <if test="isFlag != null" >
+        is_flag = #{isFlag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where payment_style_id = #{paymentStyleId,jdbcType=INTEGER}
+  </update>
+</mapper>

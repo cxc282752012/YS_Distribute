@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.system.mapper.StoreMasterMapper" >
+  <resultMap id="result" type="com.system.entity.StoreMasterEntity" >
+    <id column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="business_id" property="businessId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
+    <result column="store_linkman" property="storeLinkman" jdbcType="VARCHAR" />
+    <result column="store_phone" property="storePhone" jdbcType="VARCHAR" />
+    <result column="store_area" property="storeArea" jdbcType="VARCHAR" />
+    <result column="store_type" property="storeType" jdbcType="INTEGER" />
+    <result column="delivery_price" property="deliveryPrice" jdbcType="DOUBLE" />
+    <result column="store_discount" property="storeDiscount" jdbcType="INTEGER" />
+    <result column="store_status" property="storeStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="findList" resultMap="result" parameterType="java.lang.Integer" >
+    select * from store_master
+    <where>
+      <if test="storeId!=null">and store_id = #{storeId,jdbcType=INTEGER}</if>
+    </where>
+  </select>
+  <select id="findInfo" resultMap="result" parameterType="java.lang.Integer" >
+    select * from store_master
+    <where>
+      <if test="storeId!=null">and store_id = #{storeId,jdbcType=INTEGER}</if>
+    </where>
+  </select>
+  <delete id="doDelete" parameterType="java.lang.Integer" >
+    delete from store_master
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="doInsert" parameterType="com.system.entity.StoreMasterEntity" >
+    insert into store_master (store_id, business_id, store_name, 
+      store_address, store_linkman, store_phone, 
+      store_area, store_type, delivery_price, 
+      store_discount, store_status, create_time, 
+      update_time)
+    values (#{storeId,jdbcType=INTEGER}, #{businessId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, 
+      #{storeAddress,jdbcType=VARCHAR}, #{storeLinkman,jdbcType=VARCHAR}, #{storePhone,jdbcType=VARCHAR}, 
+      #{storeArea,jdbcType=VARCHAR}, #{storeType,jdbcType=INTEGER}, #{deliveryPrice,jdbcType=DOUBLE}, 
+      #{storeDiscount,jdbcType=INTEGER}, #{storeStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="doUpdate" parameterType="com.system.entity.StoreMasterEntity" >
+    update store_master
+    <set >
+      <if test="businessId != null" >
+        business_id = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null" >
+        store_address = #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLinkman != null" >
+        store_linkman = #{storeLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null" >
+        store_phone = #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeArea != null" >
+        store_area = #{storeArea,jdbcType=VARCHAR},
+      </if>
+      <if test="storeType != null" >
+        store_type = #{storeType,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryPrice != null" >
+        delivery_price = #{deliveryPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="storeDiscount != null" >
+        store_discount = #{storeDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="storeStatus != null" >
+        store_status = #{storeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+</mapper>

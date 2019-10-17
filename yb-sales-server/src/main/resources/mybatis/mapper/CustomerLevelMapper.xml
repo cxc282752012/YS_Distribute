@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sales.mapper.CustomerLevelMapper">
+    <resultMap id="result" type="com.sales.entity.CustomerLevelEntity">
+        <id column="customer_level_id" property="customerLevelId" jdbcType="INTEGER" />
+        <result column="level_name" property="levelName" jdbcType="VARCHAR" />
+        <result column="level_value" property="levelValue" jdbcType="DOUBLE" />
+        <result column="is_system" property="isSystem" jdbcType="CHAR" />
+        <result column="store_id" property="storeId" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from customer_level
+        where customer_level_id = #{customerLevelId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="doInsert" parameterType="com.sales.entity.CustomerLevelEntity">
+        insert into customer_level (customer_level_id, level_name, level_value,
+          is_system, store_id, create_time,
+          update_time)
+        values (#{customerLevelId,jdbcType=INTEGER}, #{levelName,jdbcType=VARCHAR}, #{levelValue,jdbcType=DOUBLE},
+          #{isSystem,jdbcType=CHAR}, #{storeId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+          #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="doUpdate" parameterType="com.sales.entity.CustomerLevelEntity">
+        update customer_level
+        <set>
+            <if test="levelName != null">
+                level_name = #{levelName,jdbcType=VARCHAR},
+            </if>
+            <if test="levelValue != null">
+                level_value = #{levelValue,jdbcType=DOUBLE},
+            </if>
+            <if test="isSystem != null">
+                is_system = #{isSystem,jdbcType=CHAR},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where customer_level_id = #{customerLevelId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findList" resultMap="result">
+        SELECT * FROM `customer_level`
+        <where>
+            <if test="customerLevelId!=null">and `customer_level_id` = #{customerLevelId}</if>
+        </where>
+    </select>
+
+    <select id="findInfo" resultMap="result">
+        SELECT * FROM `customer_level`
+        <where>
+            <if test="customerLevelId!=null">and `customer_level_id` = #{customerLevelId}</if>
+        </where>
+    </select>
+</mapper>

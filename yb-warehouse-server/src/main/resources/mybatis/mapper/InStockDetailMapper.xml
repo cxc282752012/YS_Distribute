@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.warehouse.mapper.InStockDetailMapper">
+    <resultMap id="result" type="com.warehouse.entity.InStockDetailEntity">
+        <id column="in_stock_detail_id" property="inStockDetailId" jdbcType="INTEGER" />
+        <result column="in_stock_id" property="inStockId" jdbcType="INTEGER" />
+        <result column="product_id" property="productId" jdbcType="INTEGER" />
+        <result column="product_spu" property="productSpu" jdbcType="VARCHAR" />
+        <result column="product_name" property="productName" jdbcType="VARCHAR" />
+        <result column="product_sku" property="productSku" jdbcType="VARCHAR" />
+        <result column="color_name" property="colorName" jdbcType="VARCHAR" />
+        <result column="size_name" property="sizeName" jdbcType="VARCHAR" />
+        <result column="product_quantity" property="productQuantity" jdbcType="INTEGER" />
+        <result column="product_price" property="productPrice" jdbcType="DOUBLE" />
+        <result column="product_total_price" property="productTotalPrice" jdbcType="DOUBLE" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from in_stock_detail
+        where in_stock_detail_id = #{inStockDetailId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="doInsert" parameterType="com.warehouse.entity.InStockDetailEntity">
+        insert into in_stock_detail (in_stock_detail_id, in_stock_id, product_id,
+          product_spu, product_name, product_sku,
+          color_name, size_name, product_quantity,
+          product_price, product_total_price, create_time,
+          update_time)
+        values (#{inStockDetailId,jdbcType=INTEGER}, #{inStockId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER},
+          #{productSpu,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productSku,jdbcType=VARCHAR},
+          #{colorName,jdbcType=VARCHAR}, #{sizeName,jdbcType=VARCHAR}, #{productQuantity,jdbcType=INTEGER},
+          #{productPrice,jdbcType=DOUBLE}, #{productTotalPrice,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP},
+          #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="doUpdate" parameterType="com.warehouse.entity.InStockDetailEntity">
+        update in_stock_detail
+        <set>
+            <if test="inStockId != null">
+                in_stock_id = #{inStockId,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productSpu != null">
+                product_spu = #{productSpu,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productSku != null">
+                product_sku = #{productSku,jdbcType=VARCHAR},
+            </if>
+            <if test="colorName != null">
+                color_name = #{colorName,jdbcType=VARCHAR},
+            </if>
+            <if test="sizeName != null">
+                size_name = #{sizeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productQuantity != null">
+                product_quantity = #{productQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="productTotalPrice != null">
+                product_total_price = #{productTotalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where in_stock_detail_id = #{inStockDetailId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findList" resultMap="result">
+        SELECT * FROM `in_stock_detail`
+        <where>
+            <if test="inStockDetailId!=null">and `in_stock_detail_id` = #{inStockDetailId}</if>
+        </where>
+    </select>
+
+    <select id="findInfo" resultMap="result">
+        SELECT * FROM `in_stock_detail`
+        <where>
+            <if test="inStockDetailId!=null">and `in_stock_detail_id` = #{inStockDetailId}</if>
+        </where>
+    </select>
+</mapper>

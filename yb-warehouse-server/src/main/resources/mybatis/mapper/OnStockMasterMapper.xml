@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.warehouse.mapper.OnStockMasterMapper">
+    <resultMap id="result" type="com.warehouse.entity.OnStockMasterEntity">
+        <id column="on_stock_id" property="onStockId" jdbcType="INTEGER" />
+        <result column="on_stock_code" property="onStockCode" jdbcType="VARCHAR" />
+        <result column="on_stock_total_quantity" property="onStockTotalQuantity" jdbcType="INTEGER" />
+        <result column="on_stock_total_price" property="onStockTotalPrice" jdbcType="DOUBLE" />
+        <result column="on_stock_status" property="onStockStatus" jdbcType="INTEGER" />
+        <result column="store_id" property="storeId" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from on_stock_master
+        where on_stock_id = #{onStockId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="doInsert" parameterType="com.warehouse.entity.OnStockMasterEntity">
+        insert into on_stock_master (on_stock_id, on_stock_code, on_stock_total_quantity,
+          on_stock_total_price, on_stock_status, store_id,
+          create_time, update_time)
+        values (#{onStockId,jdbcType=INTEGER}, #{onStockCode,jdbcType=VARCHAR}, #{onStockTotalQuantity,jdbcType=INTEGER},
+          #{onStockTotalPrice,jdbcType=DOUBLE}, #{onStockStatus,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER},
+          #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="doUpdate" parameterType="com.warehouse.entity.OnStockMasterEntity">
+        update on_stock_master
+        <set>
+            <if test="onStockCode != null">
+                on_stock_code = #{onStockCode,jdbcType=VARCHAR},
+            </if>
+            <if test="onStockTotalQuantity != null">
+                on_stock_total_quantity = #{onStockTotalQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="onStockTotalPrice != null">
+                on_stock_total_price = #{onStockTotalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="onStockStatus != null">
+                on_stock_status = #{onStockStatus,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where on_stock_id = #{onStockId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findList" resultMap="result">
+        SELECT * FROM `on_stock_master`
+        <where>
+            <if test="onStockId!=null">and `on_stock_id` = #{onStockId}</if>
+        </where>
+    </select>
+
+    <select id="findInfo" resultMap="result">
+        SELECT * FROM `on_stock_master`
+        <where>
+            <if test="onStockId!=null">and `on_stock_id` = #{onStockId}</if>
+        </where>
+    </select>
+</mapper>

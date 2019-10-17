@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.system.mapper.BusinessLogMapper">
+    <resultMap id="result" type="com.system.entity.BusinessLogEntity">
+        <id column="business_log_id" property="businessLogId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="module_name" property="moduleName" jdbcType="VARCHAR"/>
+        <result column="feature_name" property="featureName" jdbcType="VARCHAR"/>
+        <result column="ip_address" property="ipAddress" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="findList" resultMap="result" parameterType="java.lang.Integer">
+        select * from business_log
+        <where>
+            <if test="businessLogId!=null">and business_log_id = #{businessLogId,jdbcType=INTEGER}</if>
+        </where>
+    </select>
+    <select id="findInfo" resultMap="result" parameterType="java.lang.Integer">
+        select * from business_log
+        <where>
+            <if test="businessLogId!=null">and business_log_id = #{businessLogId,jdbcType=INTEGER}</if>
+        </where>
+    </select>
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from business_log
+        where business_log_id = #{businessLogId,jdbcType=INTEGER}
+    </delete>
+    <insert id="doInsert" parameterType="com.system.entity.BusinessLogEntity">
+        insert into business_log (business_log_id, store_id, user_id,
+        user_name, module_name, feature_name,
+        ip_address, create_time, update_time
+        )
+        values (#{businessLogId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+        #{userName,jdbcType=VARCHAR}, #{moduleName,jdbcType=VARCHAR}, #{featureName,jdbcType=VARCHAR},
+        #{ipAddress,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <update id="doUpdate" parameterType="com.system.entity.BusinessLogEntity">
+        update business_log
+        <set>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleName != null">
+                module_name = #{moduleName,jdbcType=VARCHAR},
+            </if>
+            <if test="featureName != null">
+                feature_name = #{featureName,jdbcType=VARCHAR},
+            </if>
+            <if test="ipAddress != null">
+                ip_address = #{ipAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where business_log_id = #{businessLogId,jdbcType=INTEGER}
+    </update>
+</mapper>

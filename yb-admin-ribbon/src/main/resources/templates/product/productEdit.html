@@ -1,0 +1,518 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>云豹后台管理系统</title>
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/styles/style.css">
+
+    <!-- Material Design Icon -->
+    <link rel="stylesheet" href="/fonts/material-design/css/materialdesignicons.css">
+
+    <!-- mCustomScrollbar -->
+    <link rel="stylesheet" href="/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+
+    <!-- Waves Effect -->
+    <link rel="stylesheet" href="/plugin/waves/waves.css">
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="/plugin/sweet-alert/sweetalert.css">
+
+    <!-- Color Picker -->
+    <link rel="stylesheet" href="/color-switcher/color-switcher.less">
+</head>
+
+<body>
+<div class="main-menu">
+    <header class="header">
+        <a href="../public/index.html" class="logo">云豹后台管理系统</a>
+        <button type="button" class="button-close fa fa-times js__menu_close"></button>
+    </header>
+    <!-- /.header -->
+    <div class="content">
+
+        <div class="navigation">
+            <ul class="menu js__accordion">
+                <li>
+                    <a class="waves-effect" href="../public/index.html"><i class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span></a>
+                </li>
+                <li class="current active">
+                    <a class="waves-effect parent-item js__control" href="#"><i
+                            class="menu-icon mdi mdi-flower"></i><span>商品管理</span><span
+                            class="menu-arrow fa fa-angle-down"></span></a>
+                    <ul class="sub-menu js__content">
+                        <li><a href="../product/list.html">商品列表</a></li>
+                        <li class="current"><a href="../product/productEdit.html">添加商品</a></li>
+                    </ul>
+                    <!-- /.sub-menu js__content -->
+                </li>
+                <li>
+                    <a class="waves-effect" href="../public/calendar.html"><i
+                            class="menu-icon mdi mdi-calendar-multiple"></i><span>Calendar</span><span
+                            class="notice notice-danger">New</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-chart-bar"></i><span>Charts</span><span
+                            class="menu-arrow fa fa-angle-down"></span></a>
+                    <ul class="sub-menu js__content">
+                        <li><a href="../public/chart-3d.html">3D Charts</a></li>
+                        <li><a href="../public/chart-chartist.html">Chartist Charts</a></li>
+                        <li><a href="../public/chart-chartjs.html">Chartjs Chart</a></li>
+                        <li><a href="../public/chart-dynamic.html">Dynamic Chart</a></li>
+                        <li><a href="../public/chart-flot.html">Flot Chart</a></li>
+                        <li><a href="../public/chart-knob.html">Knob Chart</a></li>
+                        <li><a href="../public/chart-morris.html">Morris Chart</a></li>
+                        <li><a href="../public/chart-sparkline.html">Sparkline Chart</a></li>
+                        <li><a href="../public/chart-other.html">Other Chart</a></li>
+                    </ul>
+                    <!-- /.sub-menu js__content -->
+                </li>
+                <li>
+                    <a class="waves-effect parent-item js__control" href="#"><i
+                            class="menu-icon mdi mdi-cube-outline"></i><span>Admin UI</span><span
+                            class="menu-arrow fa fa-angle-down"></span></a>
+                    <ul class="sub-menu js__content">
+                        <li><a href="../public/ui-notification.html">Notification</a></li>
+                        <li><a href="../public/profile.html">Profile</a></li>
+                        <li><a href="../public/ui-range-slider.html">Range Slider</a></li>
+                        <li><a href="../public/ui-sweetalert.html">Sweet Alert</a></li>
+                        <li><a href="../public/ui-treeview.html">Tree view</a></li>
+                        <li><a href="../public/widgets.html">Widget</a></li>
+                    </ul>
+                    <!-- /.sub-menu js__content -->
+                </li>
+                <li>
+                    <a class="waves-effect parent-item js__control" href="#"><i
+                            class="menu-icon mdi mdi-buffer"></i><span>User Interface</span><span
+                            class="menu-arrow fa fa-angle-down"></span></a>
+                    <ul class="sub-menu js__content">
+                        <li><a href="../public/ui-buttons.html">Buttons</a></li>
+                        <li><a href="../public/ui-cards.html">Cards</a></li>
+                        <li><a href="../public/ui-checkbox-radio.html">Checkboxs-Radios</a></li>
+                        <li><a href="../public/ui-components.html">Components</a></li>
+                        <li><a href="../public/ui-draggable-cards.html">Draggable Cards</a></li>
+                        <li><a href="../public/ui-modals.html">Modals</a></li>
+                        <li><a href="../public/ui-typography.html">Typography</a></li>
+                    </ul>
+                    <!-- /.sub-menu js__content -->
+                </li>
+                <li>
+                    <a class="waves-effect" href="../public/inbox.html"><i
+                            class="menu-icon mdi mdi-email-outline"></i><span>Mail</span></a>
+                </li>
+                <li>
+                    <a class="waves-effect parent-item js__control" href="#"><i
+                            class="menu-icon mdi mdi-pencil-box"></i><span>Forms</span><span class="notice notice-blue">7</span></a>
+                    <ul class="sub-menu js__content">
+                        <li><a href="../public/form-elements.html">General Elements</a></li>
+                        <li><a href="../public/form-advanced.html">Advanced Form</a></li>
+                        <li><a href="../public/form-fileupload.html">Form Uploads</a></li>
+                        <li><a href="../public/form-validation.html">Form Validation</a></li>
+                        <li><a href="../public/form-wizard.html">Form Wizard</a></li>
+                        <li><a href="../public/form-wysiwig.html">Wysiwig Editors</a></li>
+                        <li><a href="../public/form-xeditable.html">X-editable</a></li>
+                    </ul>
+                    <!-- /.sub-menu js__content -->
+                </li>
+                <li>
+                    <a class="waves-effect parent-item js__control" href="#"><i
+                            class="menu-icon mdi mdi-table"></i><span>Tables</span><span
+                            class="menu-arrow fa fa-angle-down"></span></a>
+                    <ul class="sub-menu js__content">
+                        <li><a href="../public/tables-basic.html">Basic Tables</a></li>
+                        <li><a href="../public/tables-datatable.html">Data Tables</a></li>
+                        <li><a href="../public/tables-responsive.html">Responsive Tables</a></li>
+                        <li><a href="../public/tables-editable.html">Editable Tables</a></li>
+                    </ul>
+                    <!-- /.sub-menu js__content -->
+                </li>
+                <li>
+                    <a class="waves-effect parent-item js__control" href="#"><i
+                            class="menu-icon mdi mdi-book-multiple-variant"></i><span>Page</span><span
+                            class="menu-arrow fa fa-angle-down"></span></a>
+                    <ul class="sub-menu js__content">
+                        <li><a href="../public/page-starter.html">Starter Page</a></li>
+                        <li><a href="../public/page-login.html">Login</a></li>
+                        <li><a href="../public/page-register.html">Register</a></li>
+                        <li><a href="../public/page-recoverpw.html">Recover Password</a></li>
+                        <li><a href="../public/page-lock-screen.html">Lock Screen</a></li>
+                        <li><a href="../public/page-confirm-mail.html">Confirm Mail</a></li>
+                        <li><a href="../public/page-404.html">Error 404</a></li>
+                        <li><a href="../public/page-500.html">Error 500</a></li>
+                    </ul>
+                    <!-- /.sub-menu js__content -->
+                </li>
+                <li>
+                    <a class="waves-effect parent-item js__control" href="#"><i
+                            class="menu-icon mdi mdi-folder-multiple"></i><span>Extra Pages</span><span
+                            class="menu-arrow fa fa-angle-down"></span></a>
+                    <ul class="sub-menu js__content">
+                        <li><a href="../public/extras-contact.html">Contact list</a></li>
+                        <li><a href="../public/extras-email-template.html">Email template</a></li>
+                        <li><a href="../public/extras-faq.html">FAQ</a></li>
+                        <li><a href="../public/extras-gallery.html">Gallery</a></li>
+                        <li><a href="../public/extras-invoice.html">Invoice</a></li>
+                        <li><a href="../public/extras-maps.html">Maps</a></li>
+                        <li><a href="../public/extras-pricing.html">Pricing</a></li>
+                        <li><a href="../public/extras-projects.html">Projects</a></li>
+                        <li><a href="../public/extras-taskboard.html">Taskboard</a></li>
+                        <li><a href="../public/extras-timeline.html">Timeline</a></li>
+                        <li><a href="../public/extras-tour.html">Tour</a></li>
+                    </ul>
+                    <!-- /.sub-menu js__content -->
+                </li>
+            </ul>
+            <!-- /.menu js__accordion -->
+        </div>
+        <!-- /.navigation -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.main-menu -->
+
+<div class="fixed-navbar">
+    <div class="pull-left">
+        <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+        <h1 class="page-title">商品管理 - 新建商品</h1>
+        <!-- /.page-title -->
+    </div>
+    <!-- /.pull-left -->
+    <div class="pull-right">
+        <div class="ico-item">
+            <a href="#" class="ico-item fa fa-search js__toggle_open" data-target="#searchform-header"></a>
+            <form action="#" id="searchform-header" class="searchform js__toggle"><input type="search"
+                                                                                         placeholder="Search..."
+                                                                                         class="input-search">
+                <button class="fa fa-search button-search" type="submit"></button>
+            </form>
+            <!-- /.searchform -->
+        </div>
+        <!-- /.ico-item -->
+        <div class="ico-item fa fa-arrows-alt js__full_screen"></div>
+        <!-- /.ico-item fa fa-fa-arrows-alt -->
+        <div class="ico-item toggle-hover js__drop_down ">
+            <span class="fa fa-th js__drop_down_button"></span>
+            <div class="toggle-content">
+                <ul>
+                    <li><a href="#"><i class="fa fa-github"></i><span class="txt">Github</span></a></li>
+                    <li><a href="#"><i class="fa fa-bitbucket"></i><span class="txt">Bitbucket</span></a></li>
+                    <li><a href="#"><i class="fa fa-slack"></i><span class="txt">Slack</span></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i><span class="txt">Dribbble</span></a></li>
+                    <li><a href="#"><i class="fa fa-amazon"></i><span class="txt">Amazon</span></a></li>
+                    <li><a href="#"><i class="fa fa-dropbox"></i><span class="txt">Dropbox</span></a></li>
+                </ul>
+                <a href="#" class="read-more">More</a>
+            </div>
+            <!-- /.toggle-content -->
+        </div>
+        <!-- /.ico-item -->
+        <a href="#" class="ico-item fa fa-envelope notice-alarm js__toggle_open" data-target="#message-popup"></a>
+        <a href="#" class="ico-item pulse"><span class="ico-item fa fa-bell notice-alarm js__toggle_open"
+                                                 data-target="#notification-popup"></span></a>
+        <div class="ico-item">
+            <img src="http://placehold.it/80x80" alt="" class="ico-img">
+            <ul class="sub-ico-item">
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a class="js__logout" href="#">Log Out</a></li>
+            </ul>
+            <!-- /.sub-ico-item -->
+        </div>
+        <!-- /.ico-item -->
+    </div>
+    <!-- /.pull-right -->
+</div>
+<!-- /.fixed-navbar -->
+
+<div id="notification-popup" class="notice-popup js__toggle" data-space="50">
+    <h2 class="popup-title">Your Notifications</h2>
+    <!-- /.popup-title -->
+    <div class="content">
+        <ul class="notice-list">
+            <li>
+                <a href="#">
+                    <span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+                    <span class="name">John Doe</span>
+                    <span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+                    <span class="time">10 min</span>
+                </a>
+            </li>
+        </ul>
+        <!-- /.notice-list -->
+        <a href="#" class="notice-read-more">See more messages <i class="fa fa-angle-down"></i></a>
+    </div>
+    <!-- /.content -->
+</div>
+
+<div id="wrapper">
+    <div class="main-content">
+        <form role="form" action="/brand/findList.html">
+            <div class="box-content">
+            <h4 class="box-title">基础信息</h4>
+            <dl class="dl-horizontal">
+                <div class="form-group">
+                    <dt><label>商品类别</label></dt>
+                    <dd>
+                        <div class="input-group input-group-sm">
+                            <select class="form-control" name="categoryName" id="categoryName">
+
+                            </select>
+                        </div>
+                    </dd>
+                    <dt><label>所属门店</label></dt>
+                    <dd>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control">
+                        </div>
+                    </dd>
+                    <dt><label>商品编码</label></dt>
+                    <dd>
+                        <ul class="list-inline">
+                            <li>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" name="customCode" id="customCode"
+                                           placeholder="请输入商品编码">
+                                </div>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="systemCode">自动编码
+                            </li>
+                            <li>
+                                <input type="checkbox">扫描条形码
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-default" onclick="javascript:checkCoding()">校验</button>
+                            </li>
+                        </ul>
+
+                    </dd>
+                    <dt><label>供应商</label></dt>
+                    <dd>
+                        <div class="input-group input-group-sm">
+                            <select class="form-control" name="supplierName" id="supplierName">
+
+                            </select>
+                        </div>
+                    </dd>
+                    <dt><label>商品名称</label></dt>
+                    <dd>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" id="productName" placeholder="请输入名称">
+                        </div>
+                    </dd>
+                    <dt><label>单位</label></dt>
+                    <dd>
+                        <div class="input-group input-group-sm">
+                            <select class="form-control" name="unitName" id="unitName">
+
+                            </select>
+                        </div>
+                    </dd>
+                    <dd>
+                        <ul class="list-inline">
+                            <li>
+                                <input type="checkbox" value="" id="isIntegral"
+                                       name="isIntegral">是否参与积分
+                            </li>
+                            <li>
+                                <input type="checkbox" value="" id="isDiscount">是否参与打折
+                            </li>
+                        </ul>
+                    </dd>
+                    <dt><label>商品状态</label></dt>
+                    <dd>
+                        <input type="radio" name="status" id="status1" value="0"
+                               checked> 上架
+                    </dd>
+                    <dd>
+                        <input type="radio" name="status" id="status2" value="1">
+                        下架
+                    </dd>
+                </div>
+            </dl>
+        </div>
+
+            <div class="box-content">
+                <h4 class="box-title">属性信息</h4>
+                <dl class="dl-horizontal">
+                    <div class="form-group">
+                        <dt><label>颜色</label></dt>
+                        <dd>
+                            <div class="input-group input-group-sm">
+                                <select class="form-control" name="colorName" id="colorName">
+
+                                </select>
+                            </div>
+                        </dd>
+                        <dt><label>尺码</label></dt>
+                        <dd>
+                            <div class="input-group input-group-sm">
+                                <select class="form-control" name="colorName"  id="sizeName">
+
+                                </select>
+                            </div>
+                        </dd>
+                        <dt><label>品牌</label></dt>
+                        <dd>
+                            <div class="input-group input-group-sm">
+                                <select class="form-control" name="colorName"  id="brandName">
+
+                                </select>
+                            </div>
+                        </dd>
+                        <dt><label>季节</label></dt>
+                        <dd>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" id="season" placeholder="请输入季节名称">
+                            </div>
+                        </dd>
+                        <dt><label>年份</label></dt>
+                        <dd>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" id="years" placeholder="请输入年份">
+                            </div>
+                        </dd>
+                        <dt><label>上架日期</label></dt>
+                        <dd>
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" type="date" id="productionTime" value="2015-09-24"/>
+                            </div>
+                        </dd>
+
+                    </div>
+                </dl>
+            </div>
+
+            <div class="box-content">
+                <h4 class="box-title">价格信息</h4>
+                <dl class="dl-horizontal">
+                    <div class="form-group">
+                        <ul class="list-inline">
+                            <li>
+                                <dt><label>进货价</label></dt>
+                                <dd>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="purchasePrice" placeholder="0.00">
+                                    </div>
+                                </dd>
+                                <dt><label>零售价</label></dt>
+                                <dd>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="retailPrice" placeholder="0.00">
+                                    </div>
+                                </dd>
+                                <dt><label>会员价</label></dt>
+                                <dd>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="memberPrice" placeholder="0.00">
+                                    </div>
+                                </dd>
+                            </li>
+                            <li>
+                                <dt><label>门店调拨价</label></dt>
+                                <dd>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="transferPrice" placeholder="0.00">
+                                    </div>
+                                </dd>
+                                <dt><label>线上价</label></dt>
+                                <dd>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="websitePrice" placeholder="0.00">
+                                    </div>
+                                </dd>
+                                <dt><label>批发价</label></dt>
+                                <dd>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="wholesalePrice" placeholder="0.00">
+                                    </div>
+                                </dd>
+                            </li>
+                        </ul>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="box-content">
+                <h4 class="box-title">图文信息</h4>
+                <dl class="dl-horizontal">
+                    <div class="form-group">
+                        <ul class="list-inline">
+                            <li>
+                                <img src="/images/sativa.png" class="img-thumbnail" height="100" width="100"><br>
+                                <a href="#" style="float:left">设为主图</a>
+                                <a href="#" style="float:right">删除</a>
+                            </li>
+                            <li>
+                                <img src="/images/sativa.png" class="img-thumbnail" height="100" width="100"><br>
+                                <a href="#" style="float:left">设为主图</a>
+                                <a href="#" style="float:right">删除</a>
+                            </li>
+                            <li>
+                                <img src="/images/sativa.png" class="img-thumbnail" height="100" width="100"><br>
+                                <a href="#" style="float:left">设为主图</a>
+                                <a href="#" style="float:right">删除</a>
+                            </li>
+                            <li>
+                                <img src="/images/sativa.png" class="img-thumbnail" height="100" width="100"><br>
+                                <a href="#" style="float:left">设为主图</a>
+                                <a href="#" style="float:right">删除</a>
+                            </li>
+                            <li>
+                                <img src="/images/sativa.png" class="img-thumbnail" height="100" width="100"><br>
+                                <a href="#" style="float:left">设为主图</a>
+                                <a href="#" style="float:right">删除</a>
+                            </li>
+                            <li>
+                                <img src="/images/sativa.png" class="img-thumbnail" height="100" width="100"><br>
+                                <a href="#" style="float:left">设为主图</a>
+                                <a href="#" style="float:right">删除</a>
+                            </li>
+                        </ul>
+                    </div>
+                </dl>
+            </div>
+
+            <button type="button" class="btn btn-default" onclick="javascript:submit()">提交</button>
+        </form>
+
+        <footer class="footer">
+            <ul class="list-inline">
+                <li>2016 © YunBao.</li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </footer>
+    </div>
+    <!-- /.main-content -->
+</div><!--/#wrapper -->
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="/script/html5shiv.min.js"></script>
+<script src="/script/respond.min.js"></script>
+<![endif]-->
+<!--
+	================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/scripts/jquery.min.js"></script>
+<script src="/scripts/modernizr.min.js"></script>
+<script src="/plugin/bootstrap/js/bootstrap.js"></script>
+<script src="/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/plugin/nprogress/nprogress.js"></script>
+<script src="/plugin/sweet-alert/sweetalert.min.js"></script>
+<script src="/plugin/waves/waves.js"></script>
+<!-- Full Screen Plugin -->
+<script src="/plugin/fullscreen/jquery.fullscreen-min.js"></script>
+
+<script src="/scripts/main.js"></script>
+<script src="/color-switcher/color-switcher.js"></script>
+<script src="/js/productEdit.js"></script>
+</body>
+</html>

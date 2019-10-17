@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sales.mapper.SalesOrderMasterMapper">
+    <resultMap id="result" type="com.sales.entity.SalesOrderMasterEntity">
+        <id column="sales_order_id" property="salesOrderId" jdbcType="INTEGER" />
+        <result column="sales_order_code" property="salesOrderCode" jdbcType="VARCHAR" />
+        <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+        <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+        <result column="store_id" property="storeId" jdbcType="INTEGER" />
+        <result column="sales_status" property="salesStatus" jdbcType="INTEGER" />
+        <result column="payment_style_name" property="paymentStyleName" jdbcType="VARCHAR" />
+        <result column="payment_price" property="paymentPrice" jdbcType="DOUBLE" />
+        <result column="sales_quantity" property="salesQuantity" jdbcType="INTEGER" />
+        <result column="package_quantity" property="packageQuantity" jdbcType="INTEGER" />
+        <result column="sales_total_price" property="salesTotalPrice" jdbcType="DOUBLE" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="sales_man_id" property="salesManId" jdbcType="INTEGER" />
+        <result column="sales_remake" property="salesRemake" jdbcType="VARCHAR" />
+        <result column="occurrence_time" property="occurrenceTime" jdbcType="TIMESTAMP" />
+        <result column="print_count" property="printCount" jdbcType="INTEGER" />
+        <result column="sales_type" property="salesType" jdbcType="INTEGER" />
+        <result column="sales_style" property="salesStyle" jdbcType="INTEGER" />
+        <result column="balance" property="balance" jdbcType="DOUBLE" />
+        <result column="sales_plan_id" property="salesPlanId" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from sales_order_master
+        where sales_order_id = #{salesOrderId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="doInsert" parameterType="com.sales.entity.SalesOrderMasterEntity">
+        insert into sales_order_master (sales_order_id, sales_order_code, customer_id,
+          customer_name, store_id, sales_status,
+          payment_style_name, payment_price, sales_quantity,
+          package_quantity, sales_total_price, user_id,
+          sales_man_id, sales_remake, occurrence_time,
+          print_count, sales_type, sales_style,
+          balance, sales_plan_id, create_time,
+          update_time)
+        values (#{salesOrderId,jdbcType=INTEGER}, #{salesOrderCode,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER},
+          #{customerName,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER}, #{salesStatus,jdbcType=INTEGER},
+          #{paymentStyleName,jdbcType=VARCHAR}, #{paymentPrice,jdbcType=DOUBLE}, #{salesQuantity,jdbcType=INTEGER},
+          #{packageQuantity,jdbcType=INTEGER}, #{salesTotalPrice,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER},
+          #{salesManId,jdbcType=INTEGER}, #{salesRemake,jdbcType=VARCHAR}, #{occurrenceTime,jdbcType=TIMESTAMP},
+          #{printCount,jdbcType=INTEGER}, #{salesType,jdbcType=INTEGER}, #{salesStyle,jdbcType=INTEGER},
+          #{balance,jdbcType=DOUBLE}, #{salesPlanId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+          #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="doUpdate" parameterType="com.sales.entity.SalesOrderMasterEntity">
+        update sales_order_master
+        <set>
+            <if test="salesOrderCode != null">
+                sales_order_code = #{salesOrderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="customerName != null">
+                customer_name = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="salesStatus != null">
+                sales_status = #{salesStatus,jdbcType=INTEGER},
+            </if>
+            <if test="paymentStyleName != null">
+                payment_style_name = #{paymentStyleName,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentPrice != null">
+                payment_price = #{paymentPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="salesQuantity != null">
+                sales_quantity = #{salesQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="packageQuantity != null">
+                package_quantity = #{packageQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="salesTotalPrice != null">
+                sales_total_price = #{salesTotalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="salesManId != null">
+                sales_man_id = #{salesManId,jdbcType=INTEGER},
+            </if>
+            <if test="salesRemake != null">
+                sales_remake = #{salesRemake,jdbcType=VARCHAR},
+            </if>
+            <if test="occurrenceTime != null">
+                occurrence_time = #{occurrenceTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="printCount != null">
+                print_count = #{printCount,jdbcType=INTEGER},
+            </if>
+            <if test="salesType != null">
+                sales_type = #{salesType,jdbcType=INTEGER},
+            </if>
+            <if test="salesStyle != null">
+                sales_style = #{salesStyle,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=DOUBLE},
+            </if>
+            <if test="salesPlanId != null">
+                sales_plan_id = #{salesPlanId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where sales_order_id = #{salesOrderId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findList" resultMap="result">
+        SELECT * FROM `sales_order_detail`
+        <where>
+            <if test="salesDetailId!=null">and `sales_detail_id` = #{salesDetailId}</if>
+        </where>
+    </select>
+
+    <select id="findInfo" resultMap="result">
+        SELECT * FROM `sales_order_detail`
+        <where>
+            <if test="salesDetailId!=null">and `sales_detail_id` = #{salesDetailId}</if>
+        </where>
+    </select>
+</mapper>

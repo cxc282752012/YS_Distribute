@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.purchase.mapper.SupplierMasterMapper" >
+  <resultMap id="result" type="com.purchase.entity.SupplierMasterEntity" >
+    <id column="supplier_id" property="supplierId" jdbcType="INTEGER" />
+    <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+    <result column="supplier_short_name" property="supplierShortName" jdbcType="VARCHAR" />
+    <result column="supplier_search_key" property="supplierSearchKey" jdbcType="VARCHAR" />
+    <result column="supplier_address" property="supplierAddress" jdbcType="VARCHAR" />
+    <result column="supplier_phone" property="supplierPhone" jdbcType="VARCHAR" />
+    <result column="supplier_linkman" property="supplierLinkman" jdbcType="VARCHAR" />
+    <result column="supplier_bank" property="supplierBank" jdbcType="VARCHAR" />
+    <result column="supplier_discount" property="supplierDiscount" jdbcType="INTEGER" />
+    <result column="supplier_status" property="supplierStatus" jdbcType="INTEGER" />
+    <result column="supplier_remark" property="supplierRemark" jdbcType="VARCHAR" />
+    <result column="is_system" property="isSystem" jdbcType="CHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="DOUBLE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <delete id="doDelete" parameterType="java.lang.Integer" >
+    delete from supplier_master
+    where supplier_id = #{supplierId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="doInsert" parameterType="com.purchase.entity.SupplierMasterEntity" >
+    insert into supplier_master (supplie_id, supplier_name, supplier_short_name, 
+      supplier_search_key, supplier_address, supplier_phone, 
+      supplier_linkman, supplier_bank, supplier_discount, 
+      supplier_status, supplier_remark, is_system, 
+      store_id, balance, create_time, 
+      update_time)
+    values (#{supplieId,jdbcType=INTEGER}, #{supplierName,jdbcType=VARCHAR}, #{supplierShortName,jdbcType=VARCHAR}, 
+      #{supplierSearchKey,jdbcType=VARCHAR}, #{supplierAddress,jdbcType=VARCHAR}, #{supplierPhone,jdbcType=VARCHAR}, 
+      #{supplierLinkman,jdbcType=VARCHAR}, #{supplierBank,jdbcType=VARCHAR}, #{supplierDiscount,jdbcType=INTEGER}, 
+      #{supplierStatus,jdbcType=INTEGER}, #{supplierRemark,jdbcType=VARCHAR}, #{isSystem,jdbcType=CHAR}, 
+      #{storeId,jdbcType=INTEGER}, #{balance,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="doUpdate" parameterType="com.purchase.entity.SupplierMasterEntity" >
+    update supplier_master
+    <set >
+      <if test="supplierName != null" >
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierShortName != null" >
+        supplier_short_name = #{supplierShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierSearchKey != null" >
+        supplier_search_key = #{supplierSearchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAddress != null" >
+        supplier_address = #{supplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierPhone != null" >
+        supplier_phone = #{supplierPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkman != null" >
+        supplier_linkman = #{supplierLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierBank != null" >
+        supplier_bank = #{supplierBank,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierDiscount != null" >
+        supplier_discount = #{supplierDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="supplierStatus != null" >
+        supplier_status = #{supplierStatus,jdbcType=INTEGER},
+      </if>
+      <if test="supplierRemark != null" >
+        supplier_remark = #{supplierRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystem != null" >
+        is_system = #{isSystem,jdbcType=CHAR},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where supplier_id = #{supplierId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findList" resultMap="result">
+    SELECT * FROM `supplier_master`
+    <where>
+      <if test="supplierId!=null"> and `supplier_id` = #{supplierId}</if>
+      <if test="storeId!=null"> and `store_id` = #{storeId}</if>
+    </where>
+  </select>
+
+  <select id="findInfo" resultMap="result">
+    SELECT * FROM `supplier_master`
+    <where>
+      <if test="supplierId!=null"> and `supplier_id` = #{supplierId}</if>
+    </where>
+  </select>
+</mapper>

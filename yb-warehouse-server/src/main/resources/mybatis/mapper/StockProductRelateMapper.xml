@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.warehouse.mapper.StockProductRelateMapper" >
+  <resultMap id="result" type="com.warehouse.entity.StockProductRelateEntity" >
+    <id column="stock_product_id" property="stockProductId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_spu" property="productSpu" jdbcType="VARCHAR" />
+    <result column="product_sku" property="productSku" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="color_name" property="colorName" jdbcType="VARCHAR" />
+    <result column="size_name" property="sizeName" jdbcType="VARCHAR" />
+    <result column="stock_quantity" property="stockQuantity" jdbcType="INTEGER" />
+    <result column="product_price" property="productPrice" jdbcType="DOUBLE" />
+    <result column="product_total_price" property="productTotalPrice" jdbcType="DOUBLE" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <delete id="doDelete" parameterType="java.lang.Integer" >
+    delete from stock_product_relate
+    where stock_product_id = #{stockProductId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="doInsert" parameterType="com.warehouse.entity.StockProductRelateEntity" >
+    insert into stock_product_relate (stock_product_id, product_id, product_spu, 
+      product_sku, product_name, color_name, 
+      size_name, stock_quantity, product_price, 
+      product_total_price, store_id, create_time, 
+      update_time)
+    values (#{stockProductId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productSpu,jdbcType=VARCHAR}, 
+      #{productSku,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{colorName,jdbcType=VARCHAR}, 
+      #{sizeName,jdbcType=VARCHAR}, #{stockQuantity,jdbcType=INTEGER}, #{productPrice,jdbcType=DOUBLE}, 
+      #{productTotalPrice,jdbcType=DOUBLE}, #{storeId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="doUpdate" parameterType="com.warehouse.entity.StockProductRelateEntity" >
+    update stock_product_relate
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productSpu != null" >
+        product_spu = #{productSpu,jdbcType=VARCHAR},
+      </if>
+      <if test="productSku != null" >
+        product_sku = #{productSku,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="colorName != null" >
+        color_name = #{colorName,jdbcType=VARCHAR},
+      </if>
+      <if test="sizeName != null" >
+        size_name = #{sizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockQuantity != null" >
+        stock_quantity = #{stockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="productPrice != null" >
+        product_price = #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productTotalPrice != null" >
+        product_total_price = #{productTotalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where stock_product_id = #{stockProductId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findList" resultMap="result">
+    SELECT * FROM `stock_product_relate`
+    <where>
+      <if test="stockProductId!=null"> and `stock_product_id` = #{stockProductId}</if>
+    </where>
+  </select>
+
+  <select id="findInfo" resultMap="result">
+    SELECT * FROM `stock_product_relate`
+    <where>
+      <if test="stockProductId!=null"> and `stock_product_id` = #{stockProductId}</if>
+    </where>
+  </select>
+</mapper>

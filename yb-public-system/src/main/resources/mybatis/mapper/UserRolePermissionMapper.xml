@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.system.mapper.UserRolePermissionMapper">
+    <resultMap id="result" type="com.system.entity.UserRolePermissionEntity">
+        <id column="role_permission_id" property="rolePermissionId" jdbcType="INTEGER"/>
+        <result column="user_role_id" property="userRoleId" jdbcType="INTEGER"/>
+        <result column="user_permission_id" property="userPermissionId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findList" resultMap="result" parameterType="java.lang.Integer">
+        select * from user_role_permission
+        <where>
+            <if test="rolePermissionId!=null">and `role_permission_id` = #{rolePermissionId}</if>
+        </where>
+    </select>
+    <select id="findInfo" resultMap="result" parameterType="java.lang.Integer">
+        select * from user_role_permission
+        <where>
+            <if test="rolePermissionId!=null">and `role_permission_id` = #{rolePermissionId}</if>
+        </where>
+    </select>
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from user_role_permission
+        where role_permission_id = #{rolePermissionId,jdbcType=INTEGER}
+    </delete>
+    <insert id="doInsert" parameterType="com.system.entity.UserRolePermissionEntity">
+        insert into user_role_permission (role_permission_id, user_role_id, user_permission_id,
+        create_time, update_time)
+        values (#{rolePermissionId,jdbcType=INTEGER}, #{userRoleId,jdbcType=INTEGER},
+        #{userPermissionId,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="doUpdate" parameterType="com.system.entity.UserRolePermissionEntity">
+        update user_role_permission
+        <set>
+            <if test="userRoleId != null">
+                user_role_id = #{userRoleId,jdbcType=INTEGER},
+            </if>
+            <if test="userPermissionId != null">
+                user_permission_id = #{userPermissionId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where role_permission_id = #{rolePermissionId,jdbcType=INTEGER}
+    </update>
+</mapper>

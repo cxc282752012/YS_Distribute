@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.product.mapper.ProductDetailMapper">
+    <resultMap id="result" type="com.product.entity.ProductDetailEntity">
+        <id column="product_detail_id" property="productDetailId" jdbcType="INTEGER" />
+        <result column="product_id" property="productId" jdbcType="INTEGER" />
+        <result column="product_sku" property="productSku" jdbcType="VARCHAR" />
+        <result column="color_id" property="colorId" jdbcType="INTEGER" />
+        <result column="size_id" property="sizeId" jdbcType="INTEGER" />
+        <result column="product_barcode" property="productBarcode" jdbcType="VARCHAR" />
+        <result column="product_detail_status" property="productDetailStatus" jdbcType="INTEGER" />
+        <result column="retail_price" property="retailPrice" jdbcType="DOUBLE" />
+        <result column="lowest_price" property="lowestPrice" jdbcType="DOUBLE" />
+        <result column="member_price" property="memberPrice" jdbcType="DOUBLE" />
+        <result column="wholesale" property="wholesale" jdbcType="DOUBLE" />
+        <result column="website_price" property="websitePrice" jdbcType="DOUBLE" />
+        <result column="original_price" property="originalPrice" jdbcType="DOUBLE" />
+        <result column="cost_price" property="costPrice" jdbcType="DOUBLE" />
+        <result column="transfer" property="transfer" jdbcType="DOUBLE" />
+        <result column="store_id" property="storeId" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <delete id="doDelete" parameterType="java.lang.Integer">
+	    delete from product_detail
+	    where product_detail_id = #{productDetailId,jdbcType=INTEGER}
+  	</delete>
+
+    <insert id="doInsert" parameterType="com.product.entity.ProductDetailEntity">
+	    insert into product_detail (product_detail_id, product_id, product_sku,
+	      color_id, size_id, product_barcode,
+	      product_detail_status, retail_price, lowest_price,
+	      member_price, wholesale, website_price,
+	      original_price, cost_price, transfer,
+	      store_id, create_time, update_time
+	      )
+	    values (#{productDetailId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productSku,jdbcType=VARCHAR},
+	      #{colorId,jdbcType=INTEGER}, #{sizeId,jdbcType=INTEGER}, #{productBarcode,jdbcType=VARCHAR},
+	      #{productDetailStatus,jdbcType=INTEGER}, #{retailPrice,jdbcType=DOUBLE}, #{lowestPrice,jdbcType=DOUBLE},
+	      #{memberPrice,jdbcType=DOUBLE}, #{wholesale,jdbcType=DOUBLE}, #{websitePrice,jdbcType=DOUBLE},
+	      #{originalPrice,jdbcType=DOUBLE}, #{costPrice,jdbcType=DOUBLE}, #{transfer,jdbcType=DOUBLE},
+	      #{storeId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+	      )
+  	</insert>
+
+    <update id="doUpdate" parameterType="com.product.entity.ProductDetailEntity">
+        update product_detail
+        <set>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productSku != null">
+                product_sku = #{productSku,jdbcType=VARCHAR},
+            </if>
+            <if test="colorId != null">
+                color_id = #{colorId,jdbcType=INTEGER},
+            </if>
+            <if test="sizeId != null">
+                size_id = #{sizeId,jdbcType=INTEGER},
+            </if>
+            <if test="productBarcode != null">
+                product_barcode = #{productBarcode,jdbcType=VARCHAR},
+            </if>
+            <if test="productDetailStatus != null">
+                product_detail_status = #{productDetailStatus,jdbcType=INTEGER},
+            </if>
+            <if test="retailPrice != null">
+                retail_price = #{retailPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="lowestPrice != null">
+                lowest_price = #{lowestPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="memberPrice != null">
+                member_price = #{memberPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="wholesale != null">
+                wholesale = #{wholesale,jdbcType=DOUBLE},
+            </if>
+            <if test="websitePrice != null">
+                website_price = #{websitePrice,jdbcType=DOUBLE},
+            </if>
+            <if test="originalPrice != null">
+                original_price = #{originalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="costPrice != null">
+                cost_price = #{costPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="transfer != null">
+                transfer = #{transfer,jdbcType=DOUBLE},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where product_detail_id = #{productDetailId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findList" resultMap="result">
+        SELECT * FROM `product_detail`
+        <where>
+            <if test="productDetailId!=null">and `product_detail_id` = #{productDetailId}</if>
+        </where>
+    </select>
+
+    <select id="findInfo" resultMap="result">
+        SELECT * FROM `product_detail`
+        <where>
+            <if test="productDetailId!=null">and `product_detail_id` = #{productDetailId}</if>
+        </where>
+    </select>
+</mapper>

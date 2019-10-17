@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.purchase.mapper.PurchasePlanMasterMapper">
+    <resultMap id="result" type="com.purchase.entity.PurchasePlanMasterEntity">
+        <id column="purchase_plan_id" property="purchasePlanId" jdbcType="INTEGER"/>
+        <result column="plan_code" property="planCode" jdbcType="VARCHAR"/>
+        <result column="supplier_id" property="supplierId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="plan_status" property="planStatus" jdbcType="INTEGER"/>
+        <result column="payment_style_name" property="paymentStyleName" jdbcType="VARCHAR"/>
+        <result column="payment_price" property="paymentPrice" jdbcType="DOUBLE"/>
+        <result column="plan_quantity" property="planQuantity" jdbcType="INTEGER"/>
+        <result column="package_quantity" property="packageQuantity" jdbcType="INTEGER"/>
+        <result column="plan_total_price" property="planTotalPrice" jdbcType="DOUBLE"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="sales_man_id" property="salesManId" jdbcType="INTEGER"/>
+        <result column="plan_remark" property="planRemark" jdbcType="VARCHAR"/>
+        <result column="occurrence_time" property="occurrenceTime" jdbcType="TIMESTAMP"/>
+        <result column="print_count" property="printCount" jdbcType="INTEGER"/>
+        <result column="sales_plan_id" property="salesPlanId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="findList" resultMap="result" parameterType="java.lang.Integer">
+        select * from purchase_plan_master
+        <where>
+            <if test="purchasePlanId!=null">
+                and purchase_plan_id = #{purchasePlanId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+    <select id="findInfo" resultMap="result" parameterType="java.lang.Integer">
+        select * from purchase_plan_master
+        <where>
+            <if test="purchasePlanId!=null">
+                and purchase_plan_id = #{purchasePlanId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+    <delete id="doDelete" parameterType="java.lang.Integer">
+        delete from purchase_plan_master
+        where purchase_plan_id = #{purchasePlanId,jdbcType=INTEGER}
+    </delete>
+    <insert id="doInsert" parameterType="com.purchase.entity.PurchasePlanMasterEntity">
+        insert into purchase_plan_master (purchase_plan_id, plan_code, supplier_id,
+        store_id, plan_status, payment_style_name,
+        payment_price, plan_quantity, package_quantity,
+        plan_total_price, user_id, sales_man_id,
+        plan_remark, occurrence_time, print_count,
+        sales_plan_id, create_time, update_time
+        )
+        values (#{purchasePlanId,jdbcType=INTEGER}, #{planCode,jdbcType=VARCHAR}, #{supplierId,jdbcType=INTEGER},
+        #{storeId,jdbcType=INTEGER}, #{planStatus,jdbcType=INTEGER}, #{paymentStyleName,jdbcType=VARCHAR},
+        #{paymentPrice,jdbcType=DOUBLE}, #{planQuantity,jdbcType=INTEGER}, #{packageQuantity,jdbcType=INTEGER},
+        #{planTotalPrice,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER}, #{salesManId,jdbcType=INTEGER},
+        #{planRemark,jdbcType=VARCHAR}, #{occurrenceTime,jdbcType=TIMESTAMP}, #{printCount,jdbcType=INTEGER},
+        #{salesPlanId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <update id="doUpdate" parameterType="com.purchase.entity.PurchasePlanMasterEntity">
+        update purchase_plan_master
+        <set>
+            <if test="planCode != null">
+                plan_code = #{planCode,jdbcType=VARCHAR},
+            </if>
+            <if test="supplierId != null">
+                supplier_id = #{supplierId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="planStatus != null">
+                plan_status = #{planStatus,jdbcType=INTEGER},
+            </if>
+            <if test="paymentStyleName != null">
+                payment_style_name = #{paymentStyleName,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentPrice != null">
+                payment_price = #{paymentPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="planQuantity != null">
+                plan_quantity = #{planQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="packageQuantity != null">
+                package_quantity = #{packageQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="planTotalPrice != null">
+                plan_total_price = #{planTotalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="salesManId != null">
+                sales_man_id = #{salesManId,jdbcType=INTEGER},
+            </if>
+            <if test="planRemark != null">
+                plan_remark = #{planRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="occurrenceTime != null">
+                occurrence_time = #{occurrenceTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="printCount != null">
+                print_count = #{printCount,jdbcType=INTEGER},
+            </if>
+            <if test="salesPlanId != null">
+                sales_plan_id = #{salesPlanId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where purchase_plan_id = #{purchasePlanId,jdbcType=INTEGER}
+    </update>
+</mapper>

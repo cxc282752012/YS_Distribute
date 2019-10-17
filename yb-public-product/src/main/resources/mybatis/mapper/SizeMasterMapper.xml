@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.product.mapper.SizeMasterMapper">
+    <resultMap id="result" type="com.product.entity.SizeMasterEntity">
+        <id column="size_id" property="sizeId" jdbcType="INTEGER" />
+        <result column="size_code" property="sizeCode" jdbcType="VARCHAR" />
+        <result column="size_name" property="sizeName" jdbcType="VARCHAR" />
+        <result column="size_rank" property="sizeRank" jdbcType="INTEGER" />
+        <result column="size_group_name" property="sizeGroupName" jdbcType="VARCHAR" />
+        <result column="store_id" property="storeId" jdbcType="INTEGER" />
+        <result column="is_system" property="isSystem" jdbcType="CHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <delete id="doDelete" parameterType="java.lang.Integer">
+    delete from size_master
+    where size_id = #{sizeId,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="doInsert" parameterType="com.product.entity.SizeMasterEntity">
+    insert into size_master (size_id, size_code, size_name, 
+      size_rank, size_group_name, store_id, 
+      is_system, create_time, update_time
+      )
+    values (#{sizeId,jdbcType=INTEGER}, #{sizeCode,jdbcType=VARCHAR}, #{sizeName,jdbcType=VARCHAR}, 
+      #{sizeRank,jdbcType=INTEGER}, #{sizeGroupName,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER}, 
+      #{isSystem,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+    <update id="doUpdate" parameterType="com.product.entity.SizeMasterEntity">
+        update size_master
+        <set>
+            <if test="sizeCode != null">
+                size_code = #{sizeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sizeName != null">
+                size_name = #{sizeName,jdbcType=VARCHAR},
+            </if>
+            <if test="sizeRank != null">
+                size_rank = #{sizeRank,jdbcType=INTEGER},
+            </if>
+            <if test="sizeGroupName != null">
+                size_group_name = #{sizeGroupName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="isSystem != null">
+                is_system = #{isSystem,jdbcType=CHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where size_id = #{sizeId,jdbcType=INTEGER}
+    </update>
+
+    <select id="findList" resultMap="result">
+        SELECT * FROM `size_master`
+        <where>
+            <if test="sizeId!=null">and `size_id` = #{sizeId}</if>
+            <if test="storeId!=null">and `store_id` = #{storeId}</if>
+        </where>
+    </select>
+
+    <select id="findInfo" resultMap="result">
+        SELECT * FROM `size_master`
+        <where>
+            <if test="sizeId!=null">and `size_id` = #{sizeId}</if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sales.mapper.CustomerMasterMapper" >
+  <resultMap id="result" type="com.sales.entity.CustomerMasterEntity" >
+    <id column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="customer_code" property="customerCode" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_address" property="customerAddress" jdbcType="VARCHAR" />
+    <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
+    <result column="customer_mail" property="customerMail" jdbcType="VARCHAR" />
+    <result column="customer_sex" property="customerSex" jdbcType="INTEGER" />
+    <result column="customer_birthday" property="customerBirthday" jdbcType="TIMESTAMP" />
+    <result column="customer_wechat" property="customerWechat" jdbcType="VARCHAR" />
+    <result column="customer_image_url" property="customerImageUrl" jdbcType="VARCHAR" />
+    <result column="customer_height" property="customerHeight" jdbcType="INTEGER" />
+    <result column="customer_weight" property="customerWeight" jdbcType="INTEGER" />
+    <result column="customer_password" property="customerPassword" jdbcType="VARCHAR" />
+    <result column="is_system" property="isSystem" jdbcType="CHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="customer_status" property="customerStatus" jdbcType="INTEGER" />
+    <result column="customer_remake" property="customerRemake" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="last_integral" property="lastIntegral" jdbcType="DOUBLE" />
+    <result column="stored_value" property="storedValue" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <delete id="doDelete" parameterType="java.lang.Integer" >
+    delete from customer_master
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="doInsert" parameterType="com.sales.entity.CustomerMasterEntity" >
+    insert into customer_master (customer_id, customer_code, customer_name, 
+      customer_address, customer_phone, customer_mail, 
+      customer_sex, customer_birthday, customer_wechat, 
+      customer_image_url, customer_height, customer_weight, 
+      customer_password, is_system, store_id, 
+      customer_status, customer_remake, create_time, 
+      update_time, last_integral, stored_value
+      )
+    values (#{customerId,jdbcType=INTEGER}, #{customerCode,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{customerAddress,jdbcType=VARCHAR}, #{customerPhone,jdbcType=VARCHAR}, #{customerMail,jdbcType=VARCHAR}, 
+      #{customerSex,jdbcType=INTEGER}, #{customerBirthday,jdbcType=TIMESTAMP}, #{customerWechat,jdbcType=VARCHAR}, 
+      #{customerImageUrl,jdbcType=VARCHAR}, #{customerHeight,jdbcType=INTEGER}, #{customerWeight,jdbcType=INTEGER}, 
+      #{customerPassword,jdbcType=VARCHAR}, #{isSystem,jdbcType=CHAR}, #{storeId,jdbcType=INTEGER}, 
+      #{customerStatus,jdbcType=INTEGER}, #{customerRemake,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{lastIntegral,jdbcType=DOUBLE}, #{storedValue,jdbcType=DOUBLE}
+      )
+  </insert>
+
+  <update id="doUpdate" parameterType="com.sales.entity.CustomerMasterEntity" >
+    update customer_master
+    <set >
+      <if test="customerCode != null" >
+        customer_code = #{customerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAddress != null" >
+        customer_address = #{customerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPhone != null" >
+        customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerMail != null" >
+        customer_mail = #{customerMail,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSex != null" >
+        customer_sex = #{customerSex,jdbcType=INTEGER},
+      </if>
+      <if test="customerBirthday != null" >
+        customer_birthday = #{customerBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerWechat != null" >
+        customer_wechat = #{customerWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="customerImageUrl != null" >
+        customer_image_url = #{customerImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="customerHeight != null" >
+        customer_height = #{customerHeight,jdbcType=INTEGER},
+      </if>
+      <if test="customerWeight != null" >
+        customer_weight = #{customerWeight,jdbcType=INTEGER},
+      </if>
+      <if test="customerPassword != null" >
+        customer_password = #{customerPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystem != null" >
+        is_system = #{isSystem,jdbcType=CHAR},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="customerStatus != null" >
+        customer_status = #{customerStatus,jdbcType=INTEGER},
+      </if>
+      <if test="customerRemake != null" >
+        customer_remake = #{customerRemake,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIntegral != null" >
+        last_integral = #{lastIntegral,jdbcType=DOUBLE},
+      </if>
+      <if test="storedValue != null" >
+        stored_value = #{storedValue,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findList" resultMap="result">
+    SELECT * FROM `customer_master`
+    <where>
+      <if test="customerId!=null"> and `customer_id` = #{customerId}</if>
+    </where>
+  </select>
+
+  <select id="findInfo" resultMap="result">
+    SELECT * FROM `customer_master`
+    <where>
+      <if test="customerId!=null"> and `customer_id` = #{customerId}</if>
+    </where>
+  </select>
+</mapper>
